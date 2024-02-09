@@ -1,0 +1,24 @@
+/* styles.css */
+.select:hover {
+  background-color: rgba(83, 188, 240, 0.081);
+  border-radius: 4px;
+}
+.select .MuiInputBase-root.MuiOutlinedInput-root {
+  border: none !important;
+}
+
+.select .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.select .MuiOutlinedInput-input {
+  padding: 10px !important;
+}
+
+.select .MuiInputLabel-outlined {
+  transform: translate(14px, 14px) scale(1);
+}
+
+.select .MuiInputLabel-shrink {
+  transform: translate(14px, 0) scale(0.75);
+}

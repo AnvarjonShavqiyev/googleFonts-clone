@@ -1,7 +1,4 @@
-@font-face {
-  font-family: "googlesans";
-  src: url("./assets/fonts/font/GoogleSans-Regular.woff2");
-}
+@import url("./fonts.scss");
 
 :root {
   --ff-google: "googlesans", sans-serif;
@@ -15,10 +12,7 @@
   list-style-type: none;
 }
 
-* {
-  font-family: var(--ff-google) !important;
-}
-
 a {
   text-decoration: none;
+  color: #000;
 }

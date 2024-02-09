@@ -1,5 +1,5 @@
 .reel-wrapper {
-  margin-top: 45px;
+  margin-top: 100px;
 }
 .reel-header {
   display: flex;
@@ -18,14 +18,31 @@
 }
 .reel-header-info {
   font-size: 14px;
-  color: #8d8b8b;
+  color: #34343499;
 }
 .font-reel-header {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: 20px 0;
 }
 .font-title {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+}
+.font-count {
+  color: #8d8b8b;
+}
+.reel-wrapper {
+  padding: 118px 0px 0 0;
+}
+.font-reel-wrapper {
+  padding: 10px 24px 24px 24px;
+  border-bottom: 1px solid #b8b6b6;
+}
+.font-reel-wrapper:hover {
+  background-color: #9b9a9a41;
+  border-bottom: none;
+  border-radius: 12px;
+  cursor: pointer;
 }

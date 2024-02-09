@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import './Reel.scss'
 import { RiErrorWarningLine } from "react-icons/ri";
+import { Link, NavLink } from "react-router-dom";
 
 const API_KEY = "AIzaSyD7R0Z4PmibH-7aVLDWrfNRiXiyvOss40Q"
 const Reel:React.FC = () => {
@@ -14,7 +15,6 @@ const Reel:React.FC = () => {
         .then(response => response.json())
         .then(data => setFonts(data.items))
     },[])
-    console.log(fonts)
     return (
       fonts.length > 0 && <Container>
         <div className="reel-wrapper">
@@ -26,17 +26,19 @@ const Reel:React.FC = () => {
             </div>
             <div className="fonts-reel">
                 {
-                    fonts.map((font:any) => {
-                        return <div>
-                            <div className="font-reel-header">
+                    fonts.map((font: any, index: number) => {
+                        return <Link to={`/${font.family}`} key={index}>
+                            <div className="font-reel-wrapper">
+                              <div className="font-reel-header">
                                 <p className="font-title">{font.family}</p>
                                 <p className="font-count">{font.variants.length} styles</p>
+                              </div>
+                              <p style={{ fontSize: "46px", fontFamily: `${font.family}` }}>
+                                Everyone has the right to freedom of thought, conscience and
+                              </p>
                             </div>
-                            <p> Everyone has the right to freedom of thought, conscience and religion; this right includes freedom to change his religion or belief, and freedom, either alone or in community with others and in public or private, to manifest his religion or belief in teaching, practice, worship and observance.
-                            Everyone has the right to freedom of opinion and expression; this right includes freedom to hold opinions without interference and to seek, receive and impart information and ideas through any media and regardless of frontiers.
-                            Everyone has the right to rest and leisure, including reasonable limitation of working hours and periodic holidays with pay. </p>
-                        </div>
-                    })
+                          </Link>                        
+                      })                      
                 }
             </div>
         </div>

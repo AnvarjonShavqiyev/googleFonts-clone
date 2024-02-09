@@ -1,0 +1,31 @@
+.reel-wrapper {
+  margin-top: 45px;
+}
+.reel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.warning-icon {
+  font-size: 20px;
+  color: #000;
+  margin-top: -2px;
+}
+.about-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.reel-header-info {
+  font-size: 14px;
+  color: #8d8b8b;
+}
+.font-reel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.font-title {
+  font-size: 16px;
+  font-weight: 500;
+}

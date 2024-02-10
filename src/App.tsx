@@ -1,12 +1,10 @@
 import './App.css'
-import Navbar from './components/navbar/Navbar'
 import './_reset.scss'
-import Reel from './components/reel/Reel'
+import RouteController from './routes'
 function App(){
   return (
     <>
-      <Navbar/>
-      <Reel/>
+      <RouteController/>
     </>
   )
 }

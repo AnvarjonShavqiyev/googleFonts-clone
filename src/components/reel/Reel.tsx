@@ -5,15 +5,20 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import './Reel.scss'
 import { RiErrorWarningLine } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
+interface ReelProps {
+  example:String
+}
 const API_KEY = "AIzaSyD7R0Z4PmibH-7aVLDWrfNRiXiyvOss40Q"
-const Reel:React.FC = () => {
+const Reel:React.FC<ReelProps> = ({example}) => {
     const [fonts, setFonts] = useState([]);
     useEffect(() => {
     fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`)    
         .then(response => response.json())
-        .then(data => setFonts(data.items))
+        .then(data => {
+          setFonts(data.items)
+        })
     },[])
     return (
       fonts.length > 0 && <Container>
@@ -26,15 +31,15 @@ const Reel:React.FC = () => {
             </div>
             <div className="fonts-reel">
                 {
-                    fonts.map((font: any, index: number) => {
+                    fonts.slice(0,100).map((font: any, index: number) => {
                         return <Link to={`/${font.family}`} key={index}>
                             <div className="font-reel-wrapper">
                               <div className="font-reel-header">
                                 <p className="font-title">{font.family}</p>
                                 <p className="font-count">{font.variants.length} styles</p>
                               </div>
-                              <p style={{ fontSize: "46px", fontFamily: `${font.family}` }}>
-                                Everyone has the right to freedom of thought, conscience and
+                              <p style={{ fontSize: "46px", fontFamily: `${font.family + ' regular'}` }}>
+                               {example}
                               </p>
                             </div>
                           </Link>                        

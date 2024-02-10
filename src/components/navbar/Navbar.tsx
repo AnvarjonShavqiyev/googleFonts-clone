@@ -5,8 +5,10 @@ import { TfiSearch } from "react-icons/tfi";
 import Dropdown from '../dropdown/Dropdown';
 import Bag from '../../assets/bag.svg'
 import { MdOutlineTune } from "react-icons/md";
+import { useParams } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
+  const {name} = useParams()
   return (
     <Container>
       <div className='navbar'>
@@ -21,7 +23,9 @@ const Navbar: React.FC = () => {
           </div>
             <button className='bag-btn'><img className='bag-icon' src={Bag} alt="" /></button>
         </div>
-        <button className='filter-btn'><MdOutlineTune/>Filters</button>
+        {
+        !name && <button className='filter-btn'><MdOutlineTune/>Filters</button>
+        }
       </div>
     </Container>
   )

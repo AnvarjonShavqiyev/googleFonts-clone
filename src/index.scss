@@ -1,5 +1,10 @@
 @import url("./fonts.scss");
 
+@font-face {
+  font-family: "googlesans";
+  src: url("./assets/fonts/font/GoogleSans-Regular.ttf");
+}
+
 :root {
   --ff-google: "googlesans", sans-serif;
 }

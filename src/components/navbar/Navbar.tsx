@@ -7,7 +7,12 @@ import Bag from '../../assets/bag.svg'
 import { MdOutlineTune } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+interface NavProps {
+  search: String,
+  setSearch: React.Dispatch<React.SetStateAction<String>>,
+}
+
+const Navbar: React.FC<NavProps> = ({search, setSearch}) => {
   const {name} = useParams()
   return (
     <Container>
@@ -16,7 +21,7 @@ const Navbar: React.FC = () => {
           <img src={icon} alt="" />
           <div className='nav-search-wrapper'>
             <TfiSearch className='search-icon'/>
-            <input className='search-input' type="text" placeholder='Search fonts' />
+            <input onChange={(e:React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} value={search} className='search-input' type="text" placeholder='Search fonts' />
             <div className='dropdown-wrapper'>
               <Dropdown/>
             </div>

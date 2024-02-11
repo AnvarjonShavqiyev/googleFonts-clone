@@ -6,7 +6,6 @@ import Tooltip from '@mui/material/Tooltip';
 import './Reel.scss'
 import { RiErrorWarningLine } from "react-icons/ri";
 import { Link} from "react-router-dom";
-
 interface ReelProps {
   example:String,
   search:String

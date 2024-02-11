@@ -5,11 +5,14 @@ import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import { MdAddCircleOutline } from "react-icons/md";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 interface SingleProps {
   search: String,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
+
 const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const {name} = useParams();
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const [currentFont, setCurrentFont] = useState([]);
   const [fontSize, setFontSize] = useState<number>(48)
   const [exampletext, setExamletext] = useState<string>("Whereas recognition of the inherent dignity")
+  const [state, setState] = useState<boolean>(true);
   useEffect(()=>{
     !name && search.length > 0 && navigate("/")
   },[search])
@@ -28,7 +32,6 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
           setCurrentFont(data.items[0].variants)
         })
     },[])
-    console.log(currentFont.variants)
     return (
     currentFont && <>
       <Navbar search={search} setSearch={setSearch}/>
@@ -57,7 +60,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
                       <p style={{margin:"25px 0 40px 0",fontFamily:`${(name+variant).split(' ').join("")}`, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
                      }
                       </div>
-                      <Button sx={{fontSize:"14px"}} color="primary">{`Select ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}</Button>
+                      <Button onClick={() => setState(!state)} sx={{fontSize:"14px", display:"flex", gap:"5px", alignItems:"center"}} color="primary">{`${state ? "Select" : "Remove"} ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}{state ? <MdAddCircleOutline className={`${state ? 'font-add-btn' : 'no-rotate'}`}/> : <IoMdRemoveCircleOutline className={`${state ? 'font-add-btn' : 'no-rotate'}`}/>}</Button>
                   </div>
                 })
               }

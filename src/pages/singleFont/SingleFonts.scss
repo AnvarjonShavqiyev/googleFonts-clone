@@ -81,3 +81,14 @@
   background-color: #7f7e7e7a;
   height: 0.7px;
 }
+.font-add-btn {
+  font-size: 18px;
+  transform: rotate(90deg);
+  transition: 0.5s !important;
+}
+
+.no-rotate {
+  font-size: 18px;
+  transform: rotate(0deg);
+  transition: 0.5s !important;
+}

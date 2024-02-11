@@ -54,3 +54,30 @@
   background: #1a73e8;
   cursor: pointer;
 }
+.font-variant-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.css-3tji1k-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #448eee30 !important;
+}
+.font-variant-wrapper:first-child:before {
+  position: absolute;
+  content: "";
+  top: -12px;
+  left: 0;
+  width: 100%;
+  background-color: #7f7e7e7a;
+  height: 0.7px;
+}
+.font-variant-wrapper::after {
+  position: absolute;
+  content: "";
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  background-color: #7f7e7e7a;
+  height: 0.7px;
+}

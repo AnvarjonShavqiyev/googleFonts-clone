@@ -86,24 +86,4 @@
 .filter-btn:hover {
   background-color: #1a73e81c;
 }
-.font-variant-wrapper {
-  position: relative;
-}
-.font-variant-wrapper:first-child:before {
-  position: absolute;
-  content: "";
-  top: -12px;
-  left: 0;
-  width: 100%;
-  background-color: #7f7e7e7a;
-  height: 0.7px;
-}
-.font-variant-wrapper::after {
-  position: absolute;
-  content: "";
-  bottom: -30px;
-  left: 0;
-  width: 100%;
-  background-color: #7f7e7e7a;
-  height: 0.7px;
-}
+

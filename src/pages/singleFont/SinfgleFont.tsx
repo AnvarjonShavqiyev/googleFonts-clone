@@ -4,6 +4,7 @@ import { Container } from "../../utils/Utils";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
+import { Button } from "@mui/material";
 
 interface SingleProps {
   search: String,
@@ -17,7 +18,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const [fontSize, setFontSize] = useState<number>(48)
   const [exampletext, setExamletext] = useState<string>("Whereas recognition of the inherent dignity")
   useEffect(()=>{
-    search.length > 0 && navigate("/")
+    !name && search.length > 0 && navigate("/")
   },[search])
   useEffect(() => {
     fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}&family=${name}`)    
@@ -27,7 +28,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
           setCurrentFont(data.items[0].variants)
         })
     },[])
-    // console.log(currentFont.variants)
+    console.log(currentFont.variants)
     return (
     currentFont && <>
       <Navbar search={search} setSearch={setSearch}/>
@@ -48,12 +49,15 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
               {
                 currentFont.map((variant:string) => {
                   return <div className="font-variant-wrapper">
+                      <div>
                       <p>{name + ' '}{variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant} </p>
                       {variant.includes('italic') ? 
-                      <em style={{margin:"25px 0 40px 0",fontFamily:name +  ' ' + variant, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</em>
+                      <em style={{display:"block", margin:"25px 0 40px 0",fontFamily:name +  ' regular', fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</em>
                       :
-                      <p style={{margin:"25px 0 40px 0",fontFamily:name +  ' ' + variant, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
+                      <p style={{margin:"25px 0 40px 0",fontFamily:name +  ' regular', fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
                      }
+                      </div>
+                      <Button sx={{fontSize:"14px"}} color="primary">{`Select ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}</Button>
                   </div>
                 })
               }

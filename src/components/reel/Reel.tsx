@@ -54,7 +54,7 @@ const Reel:React.FC<ReelProps> = ({example, search}) => {
                                 <p className="font-title">{font.family}</p>
                                 <p className="font-count">{font.variants.length} styles</p>
                               </div>
-                              <p style={{ fontSize: "46px", fontFamily: `${font.family + ' regular'}` }}>
+                              <p style={{ fontSize: "46px", fontFamily: `${font.family.split(" ").join("") + 'regular'}` }}>
                                {example}
                               </p>
                             </div>

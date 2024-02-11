@@ -6,9 +6,11 @@ fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`)
   .then((data) => {
       for (let index = 0; index < data.items.length; index++) {
         for (const [key, value] of Object.entries(data.items[index].files)) {  
+          let fontName = data.items[index].family + key
+          fontName = fontName.split(' ').join('') 
           const a=`
 @font-face {
-  font-family:${data.items[index].family + ' ' + key};
+  font-family:${fontName};
   src: url(${value});
 }
           `

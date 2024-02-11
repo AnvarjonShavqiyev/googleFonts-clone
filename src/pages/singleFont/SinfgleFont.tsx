@@ -35,7 +35,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
       <Container>
         <div className="single-font-wrapper">
             <h4 className="single-font-title">{name}</h4>
-            <p style={{fontSize:"55px", lineHeight:"65px", marginTop:"50px", textAlign:"center", fontFamily:name + ' regular'}}>Whereas disregard and contempt for human rights have resulted</p>
+            <p style={{fontSize:"55px", lineHeight:"65px", marginTop:"50px", textAlign:"center", fontFamily:name?.split(' ').join("") + 'regular'}}>Whereas disregard and contempt for human rights have resulted</p>
         </div>
         <h5 style={{fontFamily:"googlesans", fontSize:"30px", marginTop:"60px"}}>Styles</h5>
         <div className="single-filter-wrapper">
@@ -52,9 +52,9 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
                       <div>
                       <p>{name + ' '}{variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant} </p>
                       {variant.includes('italic') ? 
-                      <em style={{display:"block", margin:"25px 0 40px 0",fontFamily:name +  ' regular', fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</em>
+                      <em style={{display:"block", margin:"25px 0 40px 0",fontFamily:`${(name+variant).split(' ').join("")}`, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</em>
                       :
-                      <p style={{margin:"25px 0 40px 0",fontFamily:name +  ' regular', fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
+                      <p style={{margin:"25px 0 40px 0",fontFamily:`${(name+variant).split(' ').join("")}`, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
                      }
                       </div>
                       <Button sx={{fontSize:"14px"}} color="primary">{`Select ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}</Button>

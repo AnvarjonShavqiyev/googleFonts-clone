@@ -7,6 +7,8 @@ import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 import { MdAddCircleOutline } from "react-icons/md";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFonts } from "../../redux/features/bagSlice";
 
 interface SingleProps {
   search: String,
@@ -20,7 +22,10 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const [currentFont, setCurrentFont] = useState([]);
   const [fontSize, setFontSize] = useState<number>(48)
   const [exampletext, setExamletext] = useState<string>("Whereas recognition of the inherent dignity")
-  const [state, setState] = useState<boolean>(true);
+  const dispatch = useDispatch();
+     
+  const [fontTypes, setFontTypes] = useState<string[]>([]);
+
   useEffect(()=>{
     !name && search.length > 0 && navigate("/")
   },[search])
@@ -31,8 +36,22 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
           console.log(data)
           setCurrentFont(data.items[0].variants)
         })
-    },[])
-    return (
+  },[])
+
+  function addFont(variant: string) {
+    setFontTypes((prevFontTypes) => [...prevFontTypes, variant]);
+  }
+  
+  function removeFont(variant: string) {
+    setFontTypes((prevFontTypes) => prevFontTypes.filter((type) => type !== variant));
+  }
+  useEffect(() => {
+    dispatch(updateFonts({
+      fontName: name,
+      variants: fontTypes
+    }))
+  },[fontTypes])
+  return (
     currentFont && <>
       <Navbar search={search} setSearch={setSearch}/>
       <Container>
@@ -60,7 +79,22 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
                       <p style={{margin:"25px 0 40px 0",fontFamily:`${(name+variant).split(' ').join("")}`, fontWeight:variant.length > 3 ? variant.slice(0,3) : variant, fontSize:`${fontSize}px`}}>{exampletext}</p>
                      }
                       </div>
-                      <Button onClick={() => setState(!state)} sx={{fontSize:"14px", display:"flex", gap:"5px", alignItems:"center"}} color="primary">{`${state ? "Select" : "Remove"} ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}{state ? <MdAddCircleOutline className={`${state ? 'font-add-btn' : 'no-rotate'}`}/> : <IoMdRemoveCircleOutline className={`${state ? 'font-add-btn' : 'no-rotate'}`}/>}</Button>
+                      {
+                        fontTypes.indexOf(variant) === -1 ?
+                        <Button onClick={() => addFont(variant)} sx={{fontSize:"14px", display:"flex", gap:"5px", alignItems:"center"}} color="primary">
+                          {`${"Select"} ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}
+                          { <MdAddCircleOutline className={`${fontTypes.indexOf(variant) === -1 ? 'font-add-btn' : 'no-rotate'}`} /> }</Button>
+                        : 
+                        <Button 
+                      onClick={() => removeFont(variant)} 
+                      sx={{fontSize:"14px", display:"flex", gap:"5px", alignItems:"center"}} 
+                      color="primary"
+                      >
+                        {`${"Remove"} ${name} ${variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant}`}
+                        {<IoMdRemoveCircleOutline className={`${'no-rotate'}`} />
+                        }
+                      </Button>
+                     }
                   </div>
                 })
               }

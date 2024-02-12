@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import bagReducer from '../features/bagSlice'
 export const store = configureStore({
     reducer: {
-
+        bagRoot: bagReducer
     },
 })
 

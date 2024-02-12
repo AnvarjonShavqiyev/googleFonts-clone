@@ -23,7 +23,8 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const [fontSize, setFontSize] = useState<number>(48)
   const [exampletext, setExamletext] = useState<string>("Whereas recognition of the inherent dignity")
   const dispatch = useDispatch();
-     
+  const fontsState = useSelector(state => state)
+  console.log(fontsState)
   const [fontTypes, setFontTypes] = useState<string[]>([]);
 
   useEffect(()=>{
@@ -48,7 +49,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   useEffect(() => {
     dispatch(updateFonts({
       fontName: name,
-      variants: fontTypes
+      variants: fontTypes 
     }))
   },[fontTypes])
   return (

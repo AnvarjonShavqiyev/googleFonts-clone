@@ -71,7 +71,7 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
             <TextField sx={{width:"70%"}} id="outlined-basic" label="Type here to preview text" variant="outlined" onChange={(e:React.ChangeEvent<HTMLInputElement>) => {e.target.value.length > 0 ? setExamletext(e.target.value) : setExamletext("Whereas recognition of the inherent dignity")}}/>
             <div className="slider-container">
               <p style={{fontSize:"18px", width:"40px"}}>{fontSize}</p>
-              <input value={fontSize} type="range" min="8" max="100" onChange={(e:React.ChangeEvent<HTMLInputElement>) => setFontSize(e.target.value)} className="slider" id="mySlider"/>
+              <input value={fontSize} type="range" min="8" max="100" onChange={(e:any) => setFontSize(e.target.value)} className="slider" id="mySlider"/>
             </div>
         </div>
         <div className="single-font-variants">

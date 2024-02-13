@@ -7,12 +7,11 @@ interface HomeProps {
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
 const Home:React.FC<HomeProps> = ({search, setSearch}) => {
-  const [example, setExample] = useState<String>(" Everyone has the right to freedom of thought, conscience and")
-  const [fontSize, setFontSize] = useState<Number>(48)
+  const [example] = useState<String>(" Everyone has the right to freedom of thought, conscience and")
   return (
       <>
         <Navbar search={search} setSearch={setSearch}/>
-        <Reel example={example} search={search} fontSize={fontSize}/>
+        <Reel example={example} search={search}/>
       </>    
   )
 }

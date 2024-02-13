@@ -9,10 +9,9 @@ import { Link} from "react-router-dom";
 interface ReelProps {
   example:String,
   search:String,
-  fontSize:Number,
 }
 const API_KEY = "AIzaSyD7R0Z4PmibH-7aVLDWrfNRiXiyvOss40Q"
-const Reel:React.FC<ReelProps> = ({example, search, fontSize}) => {
+const Reel:React.FC<ReelProps> = ({example, search}) => {
     const [response, setResponse] = useState([]);
     const [fonts, setFonts] = useState([]);
     useEffect(() => {

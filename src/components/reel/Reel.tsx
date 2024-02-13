@@ -8,10 +8,11 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { Link} from "react-router-dom";
 interface ReelProps {
   example:String,
-  search:String
+  search:String,
+  fontSize:Number,
 }
 const API_KEY = "AIzaSyD7R0Z4PmibH-7aVLDWrfNRiXiyvOss40Q"
-const Reel:React.FC<ReelProps> = ({example, search}) => {
+const Reel:React.FC<ReelProps> = ({example, search, fontSize}) => {
     const [response, setResponse] = useState([]);
     const [fonts, setFonts] = useState([]);
     useEffect(() => {
@@ -53,7 +54,7 @@ const Reel:React.FC<ReelProps> = ({example, search}) => {
                                 <p className="font-title">{font.family}</p>
                                 <p className="font-count">{font.variants.length} styles</p>
                               </div>
-                              <p style={{ fontSize: "46px", fontFamily: `${font.family.split(" ").join("") + 'regular'}` }}>
+                              <p style={{ fontSize: `46px`, whiteSpace:"nowrap", fontFamily: `${font.family.split(" ").join("") + 'regular'}` }}>
                                {example}
                               </p>
                             </div>

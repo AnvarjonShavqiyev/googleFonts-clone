@@ -1,0 +1,37 @@
+.bag-page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 0;
+}
+.empty-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+.sticker {
+  font-size: 100px;
+  color: #bcbbbb;
+  margin-bottom: 30px;
+}
+.link-empty-page {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #279ef4;
+  color: #279ef4;
+}
+.empty-page-note {
+  font-size: 20px;
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+.link-empty-page:hover {
+  background-color: #75c4fc35;
+}
+.selected-count {
+  font-size: 38px;
+  margin-top: 40px;
+}

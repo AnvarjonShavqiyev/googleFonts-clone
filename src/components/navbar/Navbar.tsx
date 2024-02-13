@@ -5,7 +5,7 @@ import { TfiSearch } from "react-icons/tfi";
 import Dropdown from '../dropdown/Dropdown';
 import Bag from '../../assets/bag.svg'
 import { MdOutlineTune } from "react-icons/md";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 interface NavProps {
   search: String,
@@ -26,7 +26,7 @@ const Navbar: React.FC<NavProps> = ({search, setSearch}) => {
               <Dropdown/>
             </div>
           </div>
-            <button className='bag-btn'><img className='bag-icon' src={Bag} alt="" /></button>
+            <Link to='/bag' className='bag-btn'><img className='bag-icon' src={Bag} alt="" /></Link>
         </div>
         {
         !name && <button className='filter-btn'><MdOutlineTune/>Filters</button>

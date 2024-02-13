@@ -4,7 +4,7 @@ import SingleFont from '../pages/singleFont/SinfgleFont'
 import BagPage from '../pages/bagPage/BagPage'
 
 interface RouteProps {
-  search: String,
+  search: string,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
 const index:React.FC<RouteProps> = ({search, setSearch}) => {

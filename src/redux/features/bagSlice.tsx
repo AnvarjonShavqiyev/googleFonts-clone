@@ -7,7 +7,7 @@ interface initialStateType{
     fonts: FontType[],
 }
 const initialState: initialStateType = {
-    fonts: []
+    fonts: JSON.parse(localStorage.getItem('fonts') as string) || []
 }
 
 export const bagSlice = createSlice({
@@ -25,12 +25,14 @@ export const bagSlice = createSlice({
                 }else{
                     state.fonts = state.fonts.filter((font:FontType) => font.fontName !== action.payload.fontName)
                 }
+                localStorage.setItem('fonts', JSON.stringify(state.fonts))
             }else{
                 state.fonts = [...state.fonts, action.payload]
+                localStorage.setItem('fonts', JSON.stringify(state.fonts))
             }
         },
     }
-})
+})  
 
 export const {updateFonts} = bagSlice.actions
 export default bagSlice.reducer

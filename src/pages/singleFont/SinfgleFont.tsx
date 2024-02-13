@@ -9,7 +9,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFonts } from "../../redux/features/bagSlice";
-
+import { FontType } from "../../types/ElementTypes";
 interface SingleProps {
   search: String,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
@@ -23,9 +23,9 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
   const [fontSize, setFontSize] = useState<number>(48)
   const [exampletext, setExamletext] = useState<string>("Whereas recognition of the inherent dignity")
   const dispatch = useDispatch();
-  const fontsState = useSelector(state => state)
-  console.log(fontsState)
+  const fontsState = useSelector((state:any) => state.bagRoot.fonts)
   const [fontTypes, setFontTypes] = useState<string[]>([]);
+  const [state, setState] = useState<boolean>(false);
 
   useEffect(()=>{
     !name && search.length > 0 && navigate("/")
@@ -34,20 +34,26 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
     fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}&family=${name}`)    
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           setCurrentFont(data.items[0].variants)
         })
   },[])
 
+  useEffect(() =>{
+    if(fontsState[fontsState.findIndex((font:FontType) => font.fontName === name)]){
+      setFontTypes(fontsState[fontsState.findIndex((font:FontType) => font.fontName === name)].variants)
+    }
+  },[])
   function addFont(variant: string) {
+    setState(true);
     setFontTypes((prevFontTypes) => [...prevFontTypes, variant]);
   }
   
   function removeFont(variant: string) {
+    setState(true);
     setFontTypes((prevFontTypes) => prevFontTypes.filter((type) => type !== variant));
   }
   useEffect(() => {
-    dispatch(updateFonts({
+    state && dispatch(updateFonts({
       fontName: name,
       variants: fontTypes 
     }))
@@ -70,8 +76,8 @@ const SinfgleFont:React.FC<SingleProps> = ({search, setSearch}) => {
         </div>
         <div className="single-font-variants">
               {
-                currentFont.map((variant:string) => {
-                  return <div className="font-variant-wrapper">
+                currentFont.map((variant:string, index:number) => {
+                  return <div key={index} className="font-variant-wrapper">
                       <div>
                       <p>{name + ' '}{variant.includes('0') ? variant.slice(0,3) + ' ' + variant.slice(3, variant.length) : variant} </p>
                       {variant.includes('italic') ? 

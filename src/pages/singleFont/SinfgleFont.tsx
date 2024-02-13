@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateFonts } from "../../redux/features/bagSlice";
 import { FontType } from "../../types/ElementTypes";
 interface SingleProps {
-  search: String,
+  search: string,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
 

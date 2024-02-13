@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar"
 import Reel from "../../components/reel/Reel"
 import './Home.scss'
 interface HomeProps {
-  search: String,
+  search: string,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
 const Home:React.FC<HomeProps> = ({search, setSearch}) => {

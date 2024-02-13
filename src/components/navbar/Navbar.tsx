@@ -8,7 +8,7 @@ import { MdOutlineTune } from "react-icons/md";
 import { Link, useParams } from 'react-router-dom';
 
 interface NavProps {
-  search: String,
+  search: string,
   setSearch: React.Dispatch<React.SetStateAction<String>>,
 }
 
@@ -21,7 +21,7 @@ const Navbar: React.FC<NavProps> = ({search, setSearch}) => {
           <img src={icon} alt="" />
           <div className='nav-search-wrapper'>
             <TfiSearch className='search-icon'/>
-            <input onChange={(e:React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} value={search} className='search-input' type="text" placeholder='Search fonts' />
+            <input value={search} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} className='search-input' type="text" placeholder='Search fonts' />
             <div className='dropdown-wrapper'>
               <Dropdown/>
             </div>
